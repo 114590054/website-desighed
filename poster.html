@@ -39,39 +39,57 @@
       font-style: italic;
     }
 
-    /* 2. 真正的滿版網格設定 */
+    /* 滿版網格設定 */
     .content-grid {
       display: grid;
       grid-template-columns: 1fr 1fr; /* 左右各佔 50% */
-      width: 100vw;                   /* 強制寬度等於視窗寬度 */
+      width: 100vw;
       max-width: 100%;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      gap: 0;                         /* 如果格子之間不需要空隙，設為 0 即可完全無縫滿版 */
+      gap: 0;
     }
 
-    /* 單一格子樣式 */
+    /* 單一格子共用樣式 */
     .section-box {
       padding: 40px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      min-height: 250px;              /* 確保高度足夠 */
+      min-height: 250px;
     }
 
-    /* 淺色格子樣式 */
-    .section-box.light {
-      background-color: #f9eedc;
-      color: #333;
+    /* ----------------------------------------- */
+    /* 以下為四個格子各自獨立的顏色設定（可自由更改色碼） */
+    /* ----------------------------------------- */
+
+    /* 第 1 格：About the Night */
+    .section-box.box1 {
+      background-color: #f9eedc; /* 溫暖米色 */
+      color: #333333;            /* 深色字 */
     }
 
-    /* 深色格子樣式 */
-    .section-box.dark {
-      background-color: #133356;
-      color: white;
+    /* 第 2 格：Night Highlights */
+    .section-box.box2 {
+      background-color: #133356; /* 深海軍藍 */
+      color: #ffffff;            /* 白色字 */
     }
+
+    /* 第 3 格：Tonight's Program */
+    .section-box.box3 {
+      background-color: #3b2f2f; /* 濃郁咖啡色 */
+      color: #f5deb3;            /* 小麥色字 */
+    }
+
+    /* 第 4 格：Tickets */
+    .section-box.box4 {
+      background-color: #4a2e35; /* 暗莓紅色 */
+      color: #ffffff;            /* 白色字 */
+    }
+
+    /* ----------------------------------------- */
 
     .section-box h2 {
       margin-top: 0;
@@ -118,19 +136,19 @@
     <div class="image-caption">Click the image to visit the event website.</div>
   </div>
 
-  <!-- 四格內容區 (完全滿版貼齊) -->
+  <!-- 四格內容區 -->
   <div class="content-grid">
     
-    <!-- 格子 1 -->
-    <div class="section-box light">
+    <!-- 格子 1 (對應 .box1) -->
+    <div class="section-box box1">
       <h2>About the Night</h2>
       <p>Welcome to Midnight Blues, a night inspired by classic jazz clubs and social dancing.</p>
       <p>Enjoy live music, meet new people, and spend the evening dancing to swing, jazz, and rhythm &amp; blues.</p>
       <p><em>Good music. Good people. One unforgettable night!</em></p>
     </div>
 
-    <!-- 格子 2 -->
-    <div class="section-box dark">
+    <!-- 格子 2 (對應 .box2) -->
+    <div class="section-box box2">
       <h2>Night Highlights</h2>
       <p><strong>LIVE BAND</strong><br>The Blue Notes Quartet</p>
       <p><strong>SOCIAL DANCE</strong><br>An open dance floor for everyone.</p>
@@ -138,8 +156,8 @@
       <p>Music starts at 8:00 PM.</p>
     </div>
 
-    <!-- 格子 3 -->
-    <div class="section-box light">
+    <!-- 格子 3 (對應 .box3) -->
+    <div class="section-box box3">
       <h2>Tonight's Program</h2>
       <p>7:30 PM: Doors Open<br>
          8:00 PM: Live Jazz Band<br>
@@ -148,8 +166,8 @@
       <p>Schedule Update: Doors now open at 7:30 PM.</p>
     </div>
 
-    <!-- 格子 4 -->
-    <div class="section-box dark">
+    <!-- 格子 4 (對應 .box4) -->
+    <div class="section-box box4">
       <h2>Tickets</h2>
       <p>Early Bird: NT$500<br>
          Special Price: NT$600</p>
