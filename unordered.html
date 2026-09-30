@@ -6,6 +6,7 @@
       list-style-type:none;
       margin:0;
       padding:0;
+      overflow: hidden;
     }
     li{
       float:left;
@@ -26,20 +27,43 @@
     }
     li a:active{
       background-color:#1b5e20;
+    }
+    .contrnt{
+      display:none;
+      padding:20px;
+    }
+    .content:target{
+      display:block;
+    }
   </style>
 </head>
 <body>
   <ul>
     <li><a href="#home">Home</a></li>
-      <dd>hello</dd>
     <li><a href="#news">News</a></li>
-      <dd>breaking news</dd>
     <li><a href="#contact">Contact</a></li>
-      <dd>hear</dd>
     <li><a href="#schedule">Schedule</a></li>
-      <dd>tomorrow</dd>
     <li><a href="#about">About</a></li>
-      <dd>designer</dd>
   </ul>
+  
+  <div id="home" class="content">
+    hello
+  </div>
+
+  <div id="news" class="content">
+    breaking news
+  </div>
+
+  <div id="contact" class="content">
+    hear
+  </div>
+
+  <div id="schedule" class="content">
+    tomorrow
+  </div>
+
+  <div id="about" class="content">
+    designer
+  </div>
 </body>
 </html>
