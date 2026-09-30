@@ -35,6 +35,13 @@
     .content:target{
       display:block;
     }
+    .content ul {
+      list-style-type: disc;    
+    }
+
+    .content ul ul {
+      list-style-type: circle;  
+    }
   </style>
 </head>
 <body>
@@ -47,23 +54,53 @@
   </ul>
   
   <div id="home" class="content">
-    hello
+    <ul>
+      <li>hello
+        <ul>
+          <li>next</li>
+        </ul>    
+      </li>
+    </ul>
   </div>
 
   <div id="news" class="content">
-    breaking news
+    <ul>
+      <li>breaking news
+        <ul>
+          <li>next</li>
+        </ul>    
+      </li>
+    </ul>
   </div>
 
   <div id="contact" class="content">
-    hear
+    <ul>
+      <li>here
+        <ul>
+          <li>next</li>
+        </ul>    
+      </li>
+    </ul>
   </div>
 
   <div id="schedule" class="content">
-    tomorrow
+    <ul>
+      <li>tomorrow
+        <ul>
+          <li>next</li>
+        </ul>    
+      </li>
+    </ul>
   </div>
 
   <div id="about" class="content">
-    designer
+    <ul>
+      <li>designer
+        <ul>
+          <li>next</li>
+        </ul>    
+      </li>
+    </ul>
   </div>
 </body>
 </html>
