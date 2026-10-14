@@ -38,7 +38,10 @@
 
     .text {
       position: absolute;
-      text-align: center;
+      bottom: 25px;               /* 距離圓形底部 25px，把文字固定在靠近底端的位置 */
+      left: 50%;                  /* 水平定位在 50% 處 */
+      transform: translateX(-50%); /* 往回修正文字自身寬度的一半，達成精準水平置中 */
+      font-weight: bold;
     }
   </style>
 </head>
