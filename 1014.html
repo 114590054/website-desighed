@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* 整體背景與字型（根據 Task1 調色盤，使用柔和色系） */
+    body {
+      background-color: #fce4ec; /* color hunt 調色盤：極淡粉色 */
+      font-family: Arial, sans-serif;
+      color: #3e2723; /* 深暗色文字，方便閱讀 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+    }
+
+    /* 容器：限制大小並設為相對定位 (以利 Overlay 疊加) */
+    .container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    /* 1. Rounded border：確保圖片呈正圓形 */
+    .image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* 覆蓋層 (Overlay) 的初始狀態 (透明度為 0) */
+    .overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: .5s ease; /* 漸變 fade 效果 */
+      
+      /* 2. change background color：使用 color hunt 的粉紅色調 */
+      background-color: #c2185b; /* 桃粉/深粉紅 */
+      border-radius: 50%; /* 確保覆蓋層也是圓形 */
+    }
+
+    /* 滑鼠懸停 (hover) 時，漸變顯示覆蓋層 */
+    .container:hover .overlay {
+      opacity: 0.9; /* 保持微透明以看得到底圖 */
+    }
+
+    /* 3. Move text closer to the bottom：將文字移到靠近底部 */
+    .text {
+      /* 2. change text color：改變文字顏色（浅粉/白） */
+      color: #f8bbd0; 
+      font-size: 18px;
+      font-weight: bold;
+      position: absolute;
+      
+      /* 關鍵：將 bottom 設小，讓它靠近圓形底部 */
+      bottom: 25px; 
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      width: 90%; /* 避免文字太長時超出圓形 */
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Task 1 - Image Overlay Fade</h2>
+
+  <div class="container">
+    <!-- 原本的圓形圖片 -->
+    <img src="quokka.jpg" alt="Quokka" class="image">
+    
+    <!-- 懸停時的遮罩與底部文字 -->
+    <div class="overlay">
+      <div class="text">Quokka</div>
+    </div>
+  </div>
+
+</body>
+</html>
