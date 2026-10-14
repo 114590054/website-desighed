@@ -91,25 +91,32 @@
       position: relative;
       height: 75vh;
       min-height: 480px;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
+      /* 左暗右亮漸層遮罩：左邊深黑襯托白色大標題，右邊透光保持建築明亮清晰 */
+      background: linear-gradient(
+                    to right,
+                    rgba(8, 10, 15, 0.88) 0%,
+                    rgba(15, 20, 28, 0.72) 42%,
+                    rgba(255, 255, 255, 0.05) 85%,
+                    rgba(255, 255, 255, 0.12) 100%
+                  ),
                   url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
+      justify-content: flex-start;
       color: #ffffff;
-      padding: 0 20px;
+      padding: 0 40px;
     }
 
     .hero-content {
-      max-width: 700px;
+      max-width: 620px;
+      text-align: left;
     }
 
     .hero-subtitle {
       font-size: 0.75rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: #d1d5db;
+      color: #cbd5e1;
       margin-bottom: 14px;
       display: block;
     }
@@ -123,9 +130,10 @@
     }
 
     .hero-desc {
-      font-size: 1rem;
-      color: #e5e5e5;
+      font-size: 0.95rem;
+      color: #e2e8f0;
       font-weight: 300;
+      line-height: 1.5;
     }
 
     /* 4. 主要內容與章節通用排版 */
