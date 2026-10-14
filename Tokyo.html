@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOKYO. — A City of Contrasts</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Playfair Display for editorial serif headings & Inter for clean body copy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #2b2b2b;
+      background-color: #faf9f6;
+    }
+    
+    .font-serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* Assignment specific class mappings from lecture slide hint */
+    .topbar .page {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    /* Subtle image hover zoom */
+    .img-zoom-container {
+      overflow: hidden;
+    }
+    .img-zoom-container img {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .img-zoom-container:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body id="top" class="min-h-screen flex flex-col selection:bg-neutral-800 selection:text-white">
+
+  <!-- ==============================================
+       HEADER / NAVBAR (.topbar .page)
+       ============================================== -->
+  <header class="topbar sticky top-0 z-50 bg-[#faf9f6]/95 backdrop-blur-md border-b border-neutral-200/80 transition-all duration-300">
+    <div class="page max-w-5xl mx-auto px-6 py-5">
+      <!-- Brand Logo -->
+      <a href="#top" class="brand font-serif-title text-xl font-bold tracking-[0.2em] text-neutral-900 uppercase hover:opacity-75 transition-opacity">
+        TOKYO.
+      </a>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav text-[11px] font-semibold tracking-[0.25em] text-neutral-600 uppercase">
+          <li>
+            <a href="#discover" class="hover:text-black transition-colors py-1">Discover</a>
+          </li>
+          <li>
+            <a href="#neighborhoods" class="hover:text-black transition-colors py-1">Neighborhoods</a>
+          </li>
+          <li>
+            <a href="#gallery" class="hover:text-black transition-colors py-1">Gallery</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       HERO SECTION (#top)
+       ============================================== -->
+  <section class="relative min-h-[580px] lg:h-[70vh] flex items-center justify-center text-white overflow-hidden">
+    <!-- Atmospheric Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1920&q=80" 
+        alt="Tokyo Skyline at dusk with glowing city lights"
+        class="w-full h-full object-cover object-center filter brightness-[0.62] contrast-[1.1]"
+        onerror="this.src='https://placehold.co/1920x1080/1a1a1a/ffffff?text=Tokyo+Skyline'"
+      >
+      <!-- Subtle top & bottom vignette gradients -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+    </div>
+
+    <!-- Center Content Overlay -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center py-20 flex flex-col items-center">
+      <span class="text-[11px] font-medium tracking-[0.3em] uppercase text-neutral-300 mb-4 inline-block drop-shadow-sm">
+        A Visual Journey Through Japan
+      </span>
+      
+      <h1 class="font-serif-title text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight text-white mb-6 drop-shadow-md">
+        A City of<br class="hidden sm:inline" /> Contrasts.
+      </h1>
+
+      <p class="max-w-xl text-neutral-200 text-sm md:text-base leading-relaxed font-light drop-shadow">
+        Quiet temples, electric streets, and little moments in between. Discover a different side of Tokyo.
+      </p>
+
+      <!-- Minimal Scroll Down Arrow Indicator -->
+      <a href="#discover" aria-label="Scroll down to discover section" class="mt-10 text-neutral-400 hover:text-white transition-colors duration-300 animate-bounce">
+        <svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-5xl mx-auto px-6 py-12 md:py-20 w-full space-y-24 md:space-y-36">
+
+    <!-- ==============================================
+         SECTION 1: DISCOVER (#discover)
+         ============================================== -->
+    <section id="discover" class="scroll-mt-24">
+      <!-- Section Header -->
+      <div class="mb-10 md:mb-12">
+        <span class="text-[10px] md:text-xs font-semibold tracking-[0.25em] text-neutral-400 uppercase block mb-2">
+          01 / DISCOVER
+        </span>
+        <h2 class="font-serif-title text-3xl md:text-4xl text-neutral-900 tracking-tight">
+          Where tradition meets tomorrow.
+        </h2>
+      </div>
+
+      <!-- 2-Column Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-center">
+        <!-- Left Text Column -->
+        <div class="md:col-span-6 space-y-5">
+          <h3 class="text-[11px] font-bold tracking-[0.2em] text-neutral-500 uppercase">
+            More than a destination
+          </h3>
+          <p class="text-neutral-700 text-sm md:text-[15px] leading-relaxed">
+            Tokyo is a city that never stops surprising you. One moment, you are surrounded by bright neon signs and bustling pedestrian crossings. A few streets away, you might discover a quiet centuries-old shrine hidden serenely between glass towers.
+          </p>
+          <p class="text-neutral-700 text-sm md:text-[15px] leading-relaxed">
+            What makes Tokyo special is the way old and new exist side by side. Every neighborhood has its own rhythm, atmosphere, and untold story.
+          </p>
+          <blockquote class="pt-2 border-l-2 border-neutral-300 pl-4 italic text-neutral-600 text-sm font-serif-title">
+            "The best way to explore Tokyo is to get a little lost."
+          </blockquote>
+        </div>
+
+        <!-- Right Image Column -->
+        <div class="md:col-span-6">
+          <div class="img-zoom-container rounded-sm shadow-md bg-neutral-200 aspect-[4/3] w-full">
+            <img 
+              src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1000&q=80" 
+              alt="Vibrant illuminated Shibuya Crossing at night"
+              class="w-full h-full object-cover"
+              onerror="this.src='https://placehold.co/800x600/182026/ffffff?text=Neon+Streets'"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 2: NEIGHBORHOODS (#neighborhoods)
+         ============================================== -->
+    <section id="neighborhoods" class="scroll-mt-24">
+      <!-- Section Header -->
+      <div class="mb-10 md:mb-12">
+        <span class="text-[10px] md:text-xs font-semibold tracking-[0.25em] text-neutral-400 uppercase block mb-2">
+          02 / NEIGHBORHOODS
+        </span>
+        <h2 class="font-serif-title text-3xl md:text-4xl text-neutral-900 tracking-tight">
+          Slow down. Look closer.
+        </h2>
+      </div>
+
+      <!-- 2-Column Layout (Image on Left, Text on Right) -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-center">
+        <!-- Left Image Column -->
+        <div class="md:col-span-6 order-2 md:order-1">
+          <div class="img-zoom-container rounded-sm shadow-md bg-neutral-200 aspect-[4/3] w-full">
+            <img 
+              src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1000&q=80" 
+              alt="Quiet historic Japanese street with pagoda in the background"
+              class="w-full h-full object-cover"
+              onerror="this.src='https://placehold.co/800x600/3e2723/ffffff?text=Traditional+Alley'"
+            >
+          </div>
+        </div>
+
+        <!-- Right Text Column -->
+        <div class="md:col-span-6 order-1 md:order-2 space-y-5">
+          <h3 class="text-[11px] font-bold tracking-[0.2em] text-neutral-500 uppercase">
+            The Quieter Side
+          </h3>
+          <p class="text-neutral-700 text-sm md:text-[15px] leading-relaxed">
+            Beyond the crowded stations and famous landmarks, Tokyo is full of peaceful corners. Small cafés, traditional family-run craft shops, and narrow cobblestone paths invite visitors to pause and take their time.
+          </p>
+          <p class="text-neutral-700 text-sm md:text-[15px] leading-relaxed">
+            Spend an afternoon walking without a strict plan. Notice the details: warm paper lanterns, tiny curated gardens, sliding wooden doors, and the gentle pace of everyday neighborhood life.
+          </p>
+          <p class="text-neutral-500 text-xs italic font-serif-title">
+            Sometimes the most memorable places are the ones you never planned to visit.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 3: PHOTO JOURNAL / GALLERY (#gallery)
+         ============================================== -->
+    <section id="gallery" class="scroll-mt-24 pb-12">
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
+        <div>
+          <span class="text-[10px] md:text-xs font-semibold tracking-[0.25em] text-neutral-400 uppercase block mb-2">
+            03 / PHOTO JOURNAL
+          </span>
+          <h2 class="font-serif-title text-3xl md:text-4xl text-neutral-900 tracking-tight">
+            Tokyo in three frames.
+          </h2>
+        </div>
+        <p class="text-xs text-neutral-500 italic">
+          Hover over each photograph to reveal the story behind the image.
+        </p>
+      </div>
+
+      <!-- 3 Frames Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        
+        <!-- Frame 1 -->
+        <article class="group relative aspect-[3/4] bg-neutral-800 rounded-sm overflow-hidden shadow-md cursor-pointer">
+          <img 
+            src="https://images.unsplash.com/photo-1509023464722-18d996393ca8?auto=format&fit=crop&w=800&q=80" 
+            alt="Rainy Tokyo street reflecting neon signs"
+            class="w-full h-full object-cover filter saturate-125 transition-transform duration-700 ease-out group-hover:scale-105"
+            onerror="this.src='https://placehold.co/600x800/101820/ffffff?text=Rainy+City'"
+          >
+          <!-- Hover Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-amber-300 font-semibold mb-1">01 • Nightfall</span>
+            <h4 class="font-serif-title text-lg font-medium">Reflections in Rain</h4>
+            <p class="text-xs text-neutral-300 mt-2 font-light leading-relaxed">
+              Dusk in Shinjuku, where rain-slicked asphalt turns neon signs into rivers of glowing light.
+            </p>
+          </div>
+        </article>
+
+        <!-- Frame 2 -->
+        <article class="group relative aspect-[3/4] bg-neutral-800 rounded-sm overflow-hidden shadow-md cursor-pointer">
+          <img 
+            src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&w=800&q=80" 
+            alt="Tokyo twilight cityscape with distant mountains"
+            class="w-full h-full object-cover filter contrast-105 transition-transform duration-700 ease-out group-hover:scale-105"
+            onerror="this.src='https://placehold.co/600x800/221f28/ffffff?text=Twilight+Hills'"
+          >
+          <!-- Hover Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-amber-300 font-semibold mb-1">02 • Horizon</span>
+            <h4 class="font-serif-title text-lg font-medium">Evening Gradient</h4>
+            <p class="text-xs text-neutral-300 mt-2 font-light leading-relaxed">
+              The sun melts into purple hues behind the mountain line as the metropolis catches its breath.
+            </p>
+          </div>
+        </article>
+
+        <!-- Frame 3 -->
+        <article class="group relative aspect-[3/4] bg-neutral-800 rounded-sm overflow-hidden shadow-md cursor-pointer sm:col-span-2 md:col-span-1">
+          <img 
+            src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80" 
+            alt="Red paper lantern glowing in a narrow izakaya alley"
+            class="w-full h-full object-cover filter brightness-95 transition-transform duration-700 ease-out group-hover:scale-105"
+            onerror="this.src='https://placehold.co/600x800/801818/ffffff?text=Red+Lantern'"
+          >
+          <!-- Hover Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-amber-300 font-semibold mb-1">03 • Yokocho</span>
+            <h4 class="font-serif-title text-lg font-medium">The Red Lantern</h4>
+            <p class="text-xs text-neutral-300 mt-2 font-light leading-relaxed">
+              Warm hospitality awaits behind every red chōchin lantern nestled in the alleyways of Omoide Yokocho.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==============================================
+       FOOTER
+       ============================================== -->
+  <footer class="mt-auto border-t border-neutral-200/80 bg-neutral-100 text-neutral-500 py-10">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-xs gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-serif-title font-bold tracking-widest text-neutral-800 uppercase">TOKYO.</span>
+        <span>— Web Programming Lab Assignment</span>
+      </div>
+      <a href="#top" class="hover:text-neutral-900 transition-colors uppercase tracking-widest text-[10px] font-semibold flex items-center gap-1">
+        Back to Top &uarr;
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
