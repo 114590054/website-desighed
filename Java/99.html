@@ -11,16 +11,19 @@
   </style>
 </head>
 <body>
+  <table id = "mytable"></table>
+  
   <script>
-    document.write("<table>");
+    let table = document.getElementById("mytable");
+    let html = "";
     for (j = 1; j <= 9; j++) {
-      document.write("<tr>");
+     html += "<tr>";
       for (i = 2; i <= 9; i++) {
-        document.write("<td>" + i + " × " + j + " = " + (i * j) + "</td>");
+        html += "<td>" + i + " × " + j + " = " + (i * j) + "</td>";
       }
-      document.write("</tr>");
+      html "</tr>";
     }
-    document.write("</table>");
+    table.innerHTML = html;
   </script>
   
 </body>
