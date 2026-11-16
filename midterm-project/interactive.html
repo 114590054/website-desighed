@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>實用工具 | 互動功能</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">首頁</a>
+        <a href="grid.html">精選推薦</a>
+        <a href="ranking.html">熱門排行</a>
+        <a href="interactive.html">實用工具</a>
+    </nav>
+    <main>
+        <h2>社團聚餐實用工具</h2>
+
+        <!-- 互動功能 1: 動態改變內容 -->
+        <section class="tool-section">
+            <h3>不知道吃什麼？</h3>
+            <button id="randomBtn">幫我隨機決定！</button>
+            <p id="foodResult">請點擊上方按鈕...</p>
+        </section>
+
+        <!-- 互動功能 2: 數值計算機 -->
+        <section class="tool-section">
+            <h3>AA 制分錢計算機</h3>
+            <label for="totalAmount">總金額：</label>
+            <input type="number" id="totalAmount" placeholder="輸入總金額 (如: 500)">
+            <br><br>
+            <label for="peopleCount">分母人數：</label>
+            <input type="number" id="peopleCount" placeholder="輸入人數 (如: 4)">
+            <br><br>
+            <button id="calcBtn">計算每人應付金額</button>
+            <p id="calcResult"></p>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
