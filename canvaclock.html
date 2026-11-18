@@ -39,7 +39,7 @@ function drawScales(ctx, radius) {
     ctx.rotate(ang);
     ctx.beginPath();
 
-    if (i % 5 === 0) {
+    if (i % 5 == 0) {
       ctx.moveTo(0, -radius * 0.92);
       ctx.lineTo(0, -radius * 0.8);
       ctx.strokeStyle = '#ffffff';
@@ -80,9 +80,8 @@ function drawDigitalTime(ctx, radius) {
   let m = String(now.getMinutes()).padStart(2, '0');
   let s = String(now.getSeconds()).padStart(2, '0');
 
-  ctx.font = radius * 0.11 + "px Arial";
+  ctx.font = radius * 0.11;
   ctx.fillStyle = "#ffffff";
-  ctx.textBaseline = "middle";
   ctx.textAlign = "center";
   ctx.fillText(h + ":" + m + ":" + s, 0, radius * 0.35);
 }
