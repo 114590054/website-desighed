@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Luxury Clock</title>
+  <style>
+    body {
+      background-color: #162221;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    canvas {
+      border-radius: 50%;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas" width="420" height="420">
+  Sorry, your browser does not support canvas.
+</canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+let radius = canvas.height / 2;
+ctx.translate(radius, radius);
+radius = radius * 0.90;
+
+// 立即繪製一次避免剛載入空白，之後每秒更新
+drawClock();
+setInterval(drawClock, 1000);
+
+function drawClock() {
+  drawFace(ctx, radius);
+  drawScales(ctx, radius);
+  drawNumbers(ctx, radius);
+  drawDigitalTime(ctx, radius);
+  drawTime(ctx, radius);
+}
+
+// 1. 漸層色彩錶面與金屬外框
+function drawFace(ctx, radius) {
+  // 錶面放射狀漸層 (深翠綠漸層)
+  const faceGrad = ctx.createRadialGradient(0, 0, radius * 0.1, 0, 0, radius);
+  faceGrad.addColorStop(0, '#2c534c');
+  faceGrad.addColorStop(0.75, '#193530');
+  faceGrad.addColorStop(1, '#0e211e');
+
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+  ctx.fillStyle = faceGrad;
+  ctx.fill();
+
+  // 金銅色金屬外框漸層
+  const borderGrad = ctx.createLinearGradient(-radius, -radius, radius, radius);
+  borderGrad.addColorStop(0, '#f3d098');
+  borderGrad.addColorStop(0.5, '#c59253');
+  borderGrad.addColorStop(1, '#f3d098');
+
+  ctx.strokeStyle = borderGrad;
+  ctx.lineWidth = radius * 0.06;
+  ctx.stroke();
+
+  // 內圈裝飾細線
+  ctx.beginPath();
+  ctx.arc(0, 0, radius * 0.93, 0, 2 * Math.PI);
+  ctx.strokeStyle = 'rgba(243, 208, 152, 0.35)';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+}
+
+// 2. 刻度 (整點粗長、分秒細短)
+function drawScales(ctx, radius) {
+  for (let i = 0; i < 60; i++) {
+    const ang = (i * Math.PI) / 30;
+    ctx.save();
+    ctx.rotate(ang);
+
+    ctx.beginPath();
+    if (i % 5 === 0) {
+      // 小時刻度 (Bold, 較長)
+      ctx.moveTo(0, -radius * 0.90);
+      ctx.lineTo(0, -radius * 0.80);
+      ctx.strokeStyle = '#f3d098';
+      ctx.lineWidth = 3.5;
+    } else {
+      // 分/秒刻度 (thin, short)
+      ctx.moveTo(0, -radius * 0.90);
+      ctx.lineTo(0, -radius * 0.85);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.65)';
+      ctx.lineWidth = 1.2;
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+}
+
+// 3. 羅馬數字 (I ~ XII)
+function drawNumbers(ctx, radius) {
+  const romans = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
+  ctx.textBaseline = "middle";
+  ctx.textAlign = "center";
+
+  for (let num = 0; num < 12; num++) {
+    const ang = (num * Math.PI) / 6;
+    ctx.save();
+    ctx.rotate(ang);
+    ctx.translate(0, -radius * 0.68);
+    ctx.rotate(-ang); // 讓字體保持正向直立
+
+    // 12, 3, 6, 9 點鐘方向稍微放大加粗
+    if (num % 3 === 0) {
+      ctx.font = "bold " + (radius * 0.13) + "px Georgia, serif";
+      ctx.fillStyle = "#f9e3b8";
+    } else {
+      ctx.font = (radius * 0.09) + "px Georgia, serif";
+      ctx.fillStyle = "rgba(249, 227, 184, 0.8)";
+    }
+
+    ctx.fillText(romans[num], 0, 0);
+    ctx.restore();
+  }
+}
+
+// 4. 錶面上的數位時間文字 (Show Time text)
+function drawDigitalTime(ctx, radius) {
+  const now = new Date();
+  // 補零成兩位數 (例如 09:05:03)
+  const h = String(now.getHours()).padStart(2, '0');
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
+  const timeText = `${h}:${m}:${s}`;
+
+  const boxW = radius * 0.56;
+  const boxH = radius * 0.15;
+  const boxY = radius * 0.34;
+
+  // 時間顯示框背景與邊框
+  ctx.fillStyle = "rgba(10, 22, 20, 0.7)";
+  ctx.fillRect(-boxW / 2, boxY - boxH / 2, boxW, boxH);
+  ctx.strokeStyle = "rgba(243, 208, 152, 0.5)";
+  ctx.lineWidth = 1.2;
+  ctx.strokeRect(-boxW / 2, boxY - boxH / 2, boxW, boxH);
+
+  // 時間文字
+  ctx.font = "bold " + (radius * 0.095) + "px 'Courier New', monospace";
+  ctx.fillStyle = "#ffffff";
+  ctx.textBaseline = "middle";
+  ctx.textAlign = "center";
+  ctx.fillText(timeText, 0, boxY + 1);
+}
+
+// 5. 計算時間並繪製多邊形指針 (不同顏色)
+function drawTime(ctx, radius) {
+  const now = new Date();
+  let hour = now.getHours();
+  let minute = now.getMinutes();
+  let second = now.getSeconds();
+
+  // 時針角度
+  hour = hour % 12;
+  const hourAngle = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+  // 繪製金色多邊形時針
+  drawPolygonHand(ctx, hourAngle, radius * 0.48, radius * 0.045, radius * 0.09, "#f0a848");
+
+  // 分針角度
+  const minuteAngle = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+  // 繪製銀白色多邊形分針
+  drawPolygonHand(ctx, minuteAngle, radius * 0.74, radius * 0.035, radius * 0.12, "#f4f6f8");
+
+  // 秒針角度
+  const secondAngle = (second * Math.PI / 30);
+  // 繪製珊瑚紅細長秒針
+  drawSecondHand(ctx, secondAngle, radius * 0.84, radius * 0.18, "#ff6b5b");
+
+  // 中心軸心圓點
+  ctx.beginPath();
+  ctx.arc(0, 0, radius * 0.04, 0, 2 * Math.PI);
+  ctx.fillStyle = "#f3d098";
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(0, 0, radius * 0.018, 0, 2 * Math.PI);
+  ctx.fillStyle = "#162221";
+  ctx.fill();
+}
+
+// 繪製多邊形劍形指針 (Polygon using Fill)
+function drawPolygonHand(ctx, angle, length, width, tailLength, color) {
+  ctx.save();
+  ctx.rotate(angle);
+
+  ctx.beginPath();
+  ctx.moveTo(0, tailLength);              // 針尾端點
+  ctx.lineTo(-width, 0);                  // 左側寬處
+  ctx.lineTo(-width * 0.65, -length * 0.78); // 針身左肩
+  ctx.lineTo(0, -length);                 // 針尖
+  ctx.lineTo(width * 0.65, -length * 0.78);  // 針身右肩
+  ctx.lineTo(width, 0);                   // 右側寬處
+  ctx.closePath();
+
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.restore();
+}
+
+// 繪製多邊形細秒針
+function drawSecondHand(ctx, angle, length, tailLength, color) {
+  ctx.save();
+  ctx.rotate(angle);
+
+  ctx.beginPath();
+  ctx.moveTo(-2, tailLength);
+  ctx.lineTo(-1, -length);
+  ctx.lineTo(1, -length);
+  ctx.lineTo(2, tailLength);
+  ctx.closePath();
+
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.restore();
+}
+</script>
+
+</body>
+</html>
