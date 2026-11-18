@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <canvas id="myCanvas" width="500" height="360"></canvas>
+  <br>
+
+  <button onclick="draw1()">01 / Half Circle</button>
+  <button onclick="draw2()">02 / Quarter Sectors</button>
+  <button onclick="draw3()">03 / Three Quarters</button>
+  <button onclick="draw4()">04 / Open Arcs</button>
+
+  <script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // 01 / Half Circle (180°)
+    function draw1() {
+      // 淺棕底色
+      ctx.fillStyle = "#dfb598";
+      ctx.fillRect(0, 0, 500, 360);
+
+      // 深紅半圓
+      ctx.beginPath();
+      ctx.arc(250, 195, 110, Math.PI, 0, false);
+      ctx.fillStyle = "#983123";
+      ctx.fill();
+
+      // 下方水平直線
+      ctx.beginPath();
+      ctx.moveTo(140, 215);
+      ctx.lineTo(360, 215);
+      ctx.strokeStyle = "#983123";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+    }
+
+    // 02 / Quarter Sectors (90°)
+    function draw2() {
+      // 深墨綠底色
+      ctx.fillStyle = "#14362f";
+      ctx.fillRect(0, 0, 500, 360);
+
+      // 左上米黃大扇形
+      ctx.beginPath();
+      ctx.moveTo(135, 65);
+      ctx.arc(135, 65, 225, 0, Math.PI * 0.5, false);
+      ctx.closePath();
+      ctx.fillStyle = "#e8ce9c";
+      ctx.fill();
+
+      // 右下珊瑚粉小扇形
+      ctx.beginPath();
+      ctx.moveTo(360, 290);
+      ctx.arc(360, 290, 95, Math.PI, Math.PI * 1.5, false);
+      ctx.closePath();
+      ctx.fillStyle = "#d47961";
+      ctx.fill();
+    }
+
+    // 03 / Three Quarters (270°)
+    function draw3() {
+      // 陶紅底色
+      ctx.fillStyle = "#d47961";
+      ctx.fillRect(0, 0, 500, 360);
+
+      // 缺右上角的 3/4 米白圓
+      ctx.beginPath();
+      ctx.moveTo(245, 185);
+      ctx.arc(245, 185, 110, 0, Math.PI * 1.5, false);
+      ctx.closePath();
+      ctx.fillStyle = "#e9e6dc";
+      ctx.fill();
+
+      // 右上角補上的深紅 1/4 小扇形
+      ctx.beginPath();
+      ctx.moveTo(257, 173);
+      ctx.arc(257, 173, 95, Math.PI * 1.5, 0, false);
+      ctx.closePath();
+      ctx.fillStyle = "#6e1f17";
+      ctx.fill();
+    }
+
+    // 04 / Open Arcs (120°)
+    function draw4() {
+      // 米灰底色
+      ctx.fillStyle = "#dcd5c1";
+      ctx.fillRect(0, 0, 500, 360);
+
+      const startAngle = (210 * Math.PI) / 180;
+      const endAngle = (330 * Math.PI) / 180;
+
+      // 外圈深綠粗弧線
+      ctx.beginPath();
+      ctx.arc(250, 255, 115, startAngle, endAngle, false);
+      ctx.strokeStyle = "#14362f";
+      ctx.lineWidth = 22;
+      ctx.stroke();
+
+      // 內圈紅棕細弧線
+      ctx.beginPath();
+      ctx.arc(250, 255, 72, startAngle, endAngle, false);
+      ctx.strokeStyle = "#983123";
+      ctx.lineWidth = 12;
+      ctx.stroke();
+    }
+
+    // 預設一進網頁先畫第一張
+    draw1();
+  </script>
+</body>
+</html>
